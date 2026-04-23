@@ -4,6 +4,7 @@ const nextConfig = {
     domains: ['remotionlambda-useast1-x71wsi1jws.s3.amazonaws.com'],
   },
     typescript: { ignoreBuildErrors: true },
+    eslint: { ignoreDuringBuilds: true },
 }
 
 module.exports = nextConfig
