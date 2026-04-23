@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
-import { useRouter } from 'next/navigation'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -10,7 +9,6 @@ const supabase = createClient(
 )
 
 export default function LoginPage() {
-  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -29,19 +27,17 @@ export default function LoginPage() {
       return
     }
 
-    router.push('/admin')
-    router.refresh()
+    window.location.href = '/admin'
   }
 
   return (
     <div className="min-h-screen bg-green-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow p-8 w-full max-w-sm space-y-6">
-        <div className="text-center">
-          <span className="text-4xl">🌳</span>
-          <h1 className="text-xl font-bold text-green-900 mt-2">Admin Login</h1>
+      <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-sm">
+        <div className="text-center mb-6">
+          <div className="text-4xl mb-2">🌳</div>
+          <h1 className="text-2xl font-bold text-green-800">Admin Login</h1>
           <p className="text-gray-500 text-sm">Heavenly Arbor Care Services</p>
         </div>
-
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
@@ -51,7 +47,6 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
-              placeholder="admin@heavenlyarbor.com"
             />
           </div>
           <div>
@@ -64,17 +59,15 @@ export default function LoginPage() {
               className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
           </div>
-
           {error && (
-            <p className="text-red-600 text-sm">{error}</p>
+            <p className="text-red-500 text-sm">{error}</p>
           )}
-
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-green-800 text-white font-bold py-3 rounded-xl hover:bg-green-700 transition disabled:opacity-50"
+            className="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition disabled:opacity-60"
           >
-            {loading ? 'Signing in…' : 'Sign In'}
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
       </div>
