@@ -5,7 +5,6 @@ import { sendSMS, sendEmail } from '@/lib/ghl'
 import { BUSINESS_PHONE } from '@/lib/constants'
 import type Stripe from 'stripe'
 
-export const config = { api: { bodyParser: false } }
 
 // POST /api/webhooks/stripe
 export async function POST(req: NextRequest) {
